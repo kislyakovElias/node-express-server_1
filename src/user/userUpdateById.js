@@ -1,10 +1,11 @@
 import User from './Model';
 
-export default function userGetById(req, res) {
-
+export default function userUpdateById(req, res) {
   const userId = req.params.userId;
 
-  User.findById(userId)
+  delete req.body.password;
+
+  User.updateOne({ _id: userId }, req.body)
     // .skip(1)
     .exec()
     .then((result) => {
@@ -12,6 +13,6 @@ export default function userGetById(req, res) {
     })
     .catch((err) => {
       console.log(err);
-      res.status(400).json('User get all error');
+      res.status(400).json('User update error');
     });
 }
