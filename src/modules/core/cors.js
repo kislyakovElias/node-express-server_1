@@ -11,4 +11,4 @@ export default function cors(app) {
     }
     next();
   });
-}7
+}
